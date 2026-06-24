@@ -1,17 +1,86 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 
+const projects = [
+  {
+    title: 'GEP (Gestor d\'Events i Personal)',
+    description: 'Sistema integral per a la gestió d\'events, calendari d\'activitats i seguiment de personal, optimitzat per a un control detallat i eficient.',
+    repoUrl: 'https://github.com/Pepelocotango/Gestor-Events_i_Personal',
+    webUrl: 'https://gestor-events-i-personal-landingpag.vercel.app/gep-mailer',
+    logoUrl: '/logos/gep.png',
+  },
+  {
+    title: 'GEP Mailer Proto',
+    description: 'Prototip funcional d\'un servei d\'enviament de correus electrònics integrat amb les necessitats d\'automatització del projecte GEP.',
+    repoUrl: 'https://github.com/Pepelocotango/gep-mailer-proto',
+    webUrl: 'https://gestor-events-i-personal-landingpag.vercel.app/gep-mailer',
+    logoUrl: '/logos/gep-mailer.png',
+  },
+  {
+    title: 'APP HoresFreelance',
+    description: 'Aplicació web dissenyada per al control i registre d\'hores de treball en projectes freelance, permetent una gestió del temps més precisa.',
+    repoUrl: 'https://github.com/Pepelocotango/APP_HoresFreelance',
+    logoUrl: '/logos/hores-freelance.svg',
+  },
+  {
+    title: 'QlistGoStyle & AdjustImage',
+    description: 'Conjunt d\'scripts en Lua i configuracions d\'estil per automatitzar processos de tractament d\'imatges i personalització de fluxos de treball.',
+    repoUrl: 'https://github.com/Pepelocotango/QlistGoStyle_and_AdjustImage_Lua_scripts',
+    logoUrl: '/logos/qlist-go-style.png',
+  },
+  {
+    title: 'Gt ALL Chords app',
+    description: 'Aplicació interactiva dedicada a la identificació i aprenentatge d\'acords de guitarra, ideal per a músics en formació.',
+    repoUrl: 'https://github.com/Pepelocotango/Gt_ALL_Chords_app',
+    logoUrl: '/logos/chords-app.png',
+  },
+  {
+    title: 'PC Conf',
+    description: 'Repositori de configuracions personals i scripts d\'entorn per mantenir la coherència i productivitat del sistema operatiu (dotfiles).',
+    repoUrl: 'https://github.com/Pepelocotango/pc-conf',
+    logoUrl: '/logos/pc-conf.svg',
+  },
+  {
+    title: 'Dev Command Runner',
+    description: 'Eina de terminal lleugera per centralitzar i simplificar l\'execució de comandes repetitives durant el cicle de desenvolupament.',
+    repoUrl: 'https://github.com/Pepelocotango/DEV_COMMAND_RUNNER',
+    logoUrl: '/logos/dev-runner.png',
+  },
+  {
+    title: 'Control Redshift',
+    description: 'Eina específica per gestionar l\'ajust automàtic de la temperatura del color de la pantalla sota Ubuntu Mate per a la salut ocular.',
+    repoUrl: 'https://github.com/Pepelocotango/control_redshift_and_temes_UbuntuMate',
+  },
+  {
+    title: 'Bloc Notes Color (Electron)',
+    description: 'Aplicació d\'escriptori construïda amb Electron per organitzar notes ràpides mitjançant una interfície basada en colors.',
+    repoUrl: 'https://github.com/Pepelocotango/bloc_de_notes_per_color_dev_compil1',
+    logoUrl: '/logos/bloc-notes.png',
+  },
+  {
+    title: 'Programa Descans',
+    description: 'Aplicació pensada per promoure hàbits saludables recordant fer pauses periòdiques durant la jornada de treball davant l\'ordinador.',
+    repoUrl: 'https://github.com/Pepelocotango/programa_descans',
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Projectes de Pepelocotango">
+  <main class="container mx-auto px-6 py-16">
+    <div class="text-center mb-16">
+      <img src="/logo-corporatiu.png" alt="Logo Corporatiu" class="w-32 h-32 object-cover rounded-full mx-auto mb-4 border-4 border-dark-700 shadow-xl" />
+      <a href="mailto:pepelocotango@gmail.com" class="text-blue-400 hover:text-blue-300 font-medium block mb-6">pepelocotango@gmail.com</a>
+      <h1 class="text-5xl font-extrabold text-white mb-6">Projectes de Pepelocotango</h1>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+        Una col·lecció de eines, aplicacions i configuracions.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map((project) => (
+        <ProjectCard {...project} />
+      ))}
+    </div>
+  </main>
+</Layout>

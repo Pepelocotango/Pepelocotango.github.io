@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark-900: #050505;
+  --color-dark-800: #1e1e1e;
+  --color-dark-700: #2d2d2d;
+  --color-dark-600: #3d3d3d;
+  --color-dark-500: #6b7280;
+}
+
+@layer base {
+  body {
+    @apply bg-dark-900 text-gray-100 font-sans antialiased leading-relaxed;
+  }
+
+  h1, h2, h3 {
+    @apply font-bold text-white;
+  }
+}

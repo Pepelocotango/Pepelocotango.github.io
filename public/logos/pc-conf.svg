@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="#1e293b" stroke="#3b82f6" stroke-width="8"/>
+  
+  <!-- PC/Monitor representation -->
+  <rect x="120" y="140" width="272" height="180" rx="8" fill="#0f172a" stroke="#60a5fa" stroke-width="4"/>
+  
+  <!-- Screen -->
+  <rect x="135" y="155" width="242" height="150" rx="4" fill="#1e293b"/>
+  
+  <!-- Code lines on screen -->
+  <rect x="150" y="170" width="80" height="8" rx="2" fill="#309053"/>
+  <rect x="150" y="185" width="120" height="8" rx="2" fill="#3b82f6"/>
+  <rect x="150" y="200" width="60" height="8" rx="2" fill="#f59e0b"/>
+  <rect x="150" y="215" width="100" height="8" rx="2" fill="#ef4444"/>
+  <rect x="150" y="230" width="90" height="8" rx="2" fill="#8b5cf6"/>
+  
+  <!-- Stand -->
+  <rect x="240" y="320" width="32" height="40" fill="#475569"/>
+  <rect x="200" y="360" width="112" height="16" rx="4" fill="#475569"/>
+  
+  <!-- PC Configurator text -->
+  <text x="256" y="410" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#60a5fa">PC</text>
+  <text x="256" y="435" font-family="Arial, sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#94a3b8">CONFIG</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="160" cy="80" r="4" fill="#309053" opacity="0.8"/>
+  <circle cx="352" cy="80" r="4" fill="#3b82f6" opacity="0.8"/>
+  <circle cx="160" cy="432" r="4" fill="#f59e0b" opacity="0.8"/>
+  <circle cx="352" cy="432" r="4" fill="#ef4444" opacity="0.8"/>
+</svg>
