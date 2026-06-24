@@ -1,43 +1,62 @@
-# Astro Starter Kit: Minimal
+# Portal de Projectes de Pepelocotango
 
-```sh
-pnpm create astro@latest -- --template minimal
+Aquest repositori conté la web personal del portafoli de projectes de **Pepelocotango**. Aquesta web funciona com un centre d'índex per a tots els repositoris de GitHub, proporcionant informació, enllaços als repositoris i accés directe a les últimes versions publicades (*releases*).
+
+## Tecnologies utilitzades
+
+- **[Astro](https://astro.build/)**: Framework web d'alt rendiment per a contingut estàtic.
+- **[Tailwind CSS](https://tailwindcss.com/)**: Disseny modular i modern per a una interfície ràpida.
+- **[GitHub Pages](https://pages.github.com/)**: Allotjament gratuït i fiable.
+
+## Estructura del Portal
+
+El portal està organitzat per mostrar targetes amb informació rellevant de cada projecte:
+- **Títol i descripció**: Context de l'eina o aplicació.
+- **Enllaç a GitHub**: Accés al codi font.
+- **Enllaç a Releases**: Accés directe a la descàrrega de l'última versió estable.
+- **Web Oficial**: (Opcional) Enllaç a la pàgina web dedicada del projecte.
+
+## Desenvolupament
+
+Per treballar en aquest portal localment:
+
+1.  **Instal·lar dependències**:
+    ```bash
+    pnpm install
+    ```
+
+2.  **Iniciar el servidor de desenvolupament**:
+    ```bash
+    pnpm dev
+    ```
+
+3.  **Compilar per a producció**:
+    ```bash
+    pnpm astro build
+    ```
+
+## Desplegament
+
+Aquest projecte es desplega automàticament a GitHub Pages mitjançant **GitHub Actions** cada vegada que es realitza un *push* a la branca `main`.
+## Development
+
+When starting the dev server, use background mode:
+
+```
+astro dev --background
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
-## 🚀 Project Structure
+## Documentation
 
-Inside of your Astro project, you'll see the following folders and files:
+Full documentation: https://docs.astro.build
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Consult these guides before working on related tasks:
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
+- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
+- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
+- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
+- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
+- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
