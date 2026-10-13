@@ -11,9 +11,10 @@ interface Props {
   webUrl?: string;
   logoUrl?: string;
   osSupport?: ('windows' | 'macos' | 'linux' | 'android')[];
+  hasReleases?: boolean;
 }
 
-const { title, description, repoUrl, webUrl, logoUrl, osSupport = [] } = Astro.props;
+const { title, description, repoUrl, webUrl, logoUrl, osSupport = [], hasReleases = true } = Astro.props;
 const releasesUrl = `${repoUrl}/releases/latest`;
 ---
 
@@ -36,7 +37,9 @@ const releasesUrl = `${repoUrl}/releases/latest`;
     
     <div class="flex gap-4 text-sm font-medium">
       <a href={repoUrl} target="_blank" class="text-gray-300 hover:text-white transition-colors">GitHub</a>
-      <a href={releasesUrl} target="_blank" class="text-gray-300 hover:text-white transition-colors">Releases</a>
+      {hasReleases && (
+        <a href={releasesUrl} target="_blank" class="text-gray-300 hover:text-white transition-colors">Releases</a>
+      )}
       {webUrl && (
         <a href={webUrl} target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors">Web</a>
       )}

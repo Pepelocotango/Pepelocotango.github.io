@@ -4,6 +4,13 @@ import ProjectCard from '../components/ProjectCard.astro';
 
 const projects = [
   {
+    title: 'AUTO CHORDS',
+    description: 'Aplicació d\'escriptori que analitza un àudio i n\'extreu els acords i l\'estructura, amb un visor d\'edició estil DAW i exportació dels clips WAV (per a Live/Reaper) i de la partitura (MusicXML/PDF).',
+    repoUrl: 'https://github.com/Pepelocotango/PROJECTE-AUTO-CHORDS',
+    logoUrl: '/logos/auto-chords.png',
+    osSupport: ['windows', 'macos', 'linux'],
+  },
+  {
     title: 'GEP (Gestor d\'Events i Personal)',
     description: 'Sistema integral per a la gestió d\'events, calendari d\'activitats i seguiment de personal, optimitzat per a un control detallat i eficient. Inclou aplicació d\'escriptori (Electron/React) i aplicació mòbil (Expo/React Native).',
     repoUrl: 'https://github.com/Pepelocotango/Gestor-Events_i_Personal',
@@ -25,6 +32,7 @@ const projects = [
     repoUrl: 'https://github.com/Pepelocotango/APP_HoresFreelance',
     logoUrl: '/logos/hores-freelance.svg',
     osSupport: ['windows', 'macos', 'linux', 'android'],
+    hasReleases: false,
   },
   {
     title: 'QlistGoStyle & AdjustImage',
@@ -39,13 +47,15 @@ const projects = [
     repoUrl: 'https://github.com/Pepelocotango/Gt_ALL_Chords_app',
     logoUrl: '/logos/chords-app.png',
     osSupport: ['windows', 'macos', 'linux'],
+    hasReleases: false,
   },
   {
     title: 'PC Conf',
-    description: 'Repositori de configuracions personals, scripts d\'entorn (dotfiles) i configurador/pressupostador de peces de maquinari de PC amb base de dades local.',
+    description: 'Aplicació d\'escriptori per triar i pressupostar peces de maquinari de PC, amb guies de compatibilitat (OpenCore/Hackintosh, xarxes Intel/AMD, GPU) i base de dades local.',
     repoUrl: 'https://github.com/Pepelocotango/pc-conf',
     logoUrl: '/logos/pc-conf.svg',
     osSupport: ['windows', 'macos', 'linux'],
+    hasReleases: false,
   },
   {
     title: 'Dev Command Runner',
@@ -53,12 +63,14 @@ const projects = [
     repoUrl: 'https://github.com/Pepelocotango/DEV_COMMAND_RUNNER',
     logoUrl: '/logos/dev-runner.png',
     osSupport: ['windows', 'macos', 'linux'],
+    hasReleases: false,
   },
   {
     title: 'Control Redshift',
     description: 'Utilitat amb interfície gràfica per programar transicions de mode Dia/Nit a Ubuntu MATE, canviant temes GTK i gestionant la lluminositat de la pantalla.',
     repoUrl: 'https://github.com/Pepelocotango/control_redshift_and_temes_UbuntuMate',
     osSupport: ['linux'],
+    hasReleases: false,
   },
   {
     title: 'Bloc Notes Color (Electron)',
@@ -66,12 +78,14 @@ const projects = [
     repoUrl: 'https://github.com/Pepelocotango/bloc_de_notes_per_color_dev_compil1',
     logoUrl: '/logos/bloc-notes.png',
     osSupport: ['windows', 'macos', 'linux'],
+    hasReleases: false,
   },
   {
     title: 'Programa Descans',
     description: 'Aplicació per promoure hàbits saludables recordant fer pauses periòdiques d\'ergonomia laboral (pauses per a la vista i el cos) durant la jornada de treball.',
     repoUrl: 'https://github.com/Pepelocotango/programa_descans',
     osSupport: ['linux'],
+    hasReleases: false,
   },
 ];
 ---
@@ -83,7 +97,7 @@ const projects = [
       <a href="mailto:pepelocotango@gmail.com" class="text-blue-400 hover:text-blue-300 font-medium block mb-6">pepelocotango@gmail.com</a>
       <h1 class="text-5xl font-extrabold text-white mb-6">Projectes</h1>
       <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-        Una col·lecció de eines, aplicacions i configuracions.
+        Una col·lecció d'eines, aplicacions i configuracions.
       </p>
     </div>
     
