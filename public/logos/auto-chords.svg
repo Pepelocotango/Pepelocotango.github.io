@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Auto Chords — logo SVG (generat per codi)
+  Manté la identitat de la icona original (quadrat fosc + ona blava #38bdf8)
+  i hi afegeix, a sota, dos carrils esquemàtics del timeline real:
+    · carril ESTRUCTURA  -> segments grisos (SECTION_FILLS)
+    · carril ACORDS      -> clips foscos amb vora clara (CLIP_FILL/CLIP_BORDER)
+                            un de seleccionat en cian (CLIP_SELECTED_BORDER)
+  Colors: app/theme.py · Composició: docs/ESQUEMA_UI.svg
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <title>Auto Chords</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b1e24"/>
+      <stop offset="1" stop-color="#0f0f10"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5cc9fb"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ===== fons: quadrat arrodonit fosc ===== -->
+  <rect x="9" y="9" width="238" height="238" rx="53"
+        fill="url(#bg)" stroke="#3a4150" stroke-width="1.6"/>
+
+  <!-- ===== ona d'àudio (identitat original) ===== -->
+  <g fill="url(#wave)">
+    <rect x="76.5"  y="68" width="11" height="28"  rx="5.5"/>
+    <rect x="99.5"  y="58" width="11" height="48"  rx="5.5"/>
+    <rect x="122.5" y="51" width="11" height="62"  rx="5.5"/>
+    <rect x="145.5" y="58" width="11" height="48"  rx="5.5"/>
+    <rect x="168.5" y="68" width="11" height="28"  rx="5.5"/>
+  </g>
+
+  <!-- ===== carril ESTRUCTURA (seccions, grisos) ===== -->
+  <g stroke="#5b6879" stroke-width="1.4">
+    <rect x="44"  y="130" width="62" height="30" rx="8" fill="#3a4655"/>
+    <rect x="112" y="130" width="42" height="30" rx="8" fill="#475a70"/>
+    <rect x="160" y="130" width="52" height="30" rx="8" fill="#5d6f82"/>
+  </g>
+
+  <!-- ===== carril ACORDS (clips, un de seleccionat) ===== -->
+  <g fill="#2e3844">
+    <rect x="44"  y="168" width="40" height="34" rx="8"
+          stroke="#b8c7dc" stroke-width="2"/>
+    <rect x="89"  y="168" width="36" height="34" rx="8"
+          stroke="#b8c7dc" stroke-width="2"/>
+    <rect x="174" y="168" width="38" height="34" rx="8"
+          stroke="#b8c7dc" stroke-width="2"/>
+  </g>
+  <!-- acord seleccionat (cian, com a la UI) -->
+  <rect x="130" y="168" width="38" height="34" rx="8"
+        fill="#2e3844" stroke="#38bdf8" stroke-width="3"/>
+</svg>
