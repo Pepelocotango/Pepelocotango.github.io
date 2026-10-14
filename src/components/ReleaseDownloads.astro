@@ -1,0 +1,136 @@
+---
+// Botons de descàrrega DIRECTA de l'última release, per sistema.
+//
+// Com al landing del GEP, però sense dependències: el <script> d'aquí baix
+// consulta l'API pública de GitHub des del NAVEGADOR del visitant i omple els
+// botons (URL + mida). Si l'API falla (límit de peticions, repo privat…) o cap
+// asset encaixa, es mostra un enllaç de fallback a la pàgina de Releases.
+//
+// 🔑 Detall: NO fem servir `/releases/latest`, perquè l'API **exclou les
+// pre-releases** (l'Auto Chords o l'APP HoresFreelance en són!). Consultem la
+// LLISTA `/releases` i agafem la primera (la més nova, sigui beta o no).
+import WindowsIcon from './icons/WindowsIcon.astro';
+import MacOsIcon from './icons/MacOsIcon.astro';
+import LinuxIcon from './icons/LinuxIcon.astro';
+import AndroidIcon from './icons/AndroidIcon.astro';
+
+interface Props {
+  repo: string;            // 'Pepelocotango/PROJECTE-AUTO-CHORDS'
+  repoUrl: string;         // 'https://github.com/Pepelocotango/...' (fallback)
+  osSupport?: string[];    // ['windows','macos','linux','android']
+}
+const { repo, repoUrl, osSupport = ['windows', 'macos', 'linux'] } = Astro.props;
+
+const btns = [
+  ['windows', 'Windows', WindowsIcon],
+  ['macos', 'macOS', MacOsIcon],
+  ['linux', 'Linux', LinuxIcon],
+  ['android', 'Android', AndroidIcon],
+].filter(([k]) => (osSupport as string[]).includes(k as string));
+---
+
+<div class="release-downloads mt-3" data-repo={repo}>
+  <div class="rd-botons hidden flex flex-wrap items-center gap-2">
+    {btns.map(([k, nom, Ico]) => (
+      <a
+        data-os={k}
+        href="#"
+        title=""
+        class="rd-btn hidden inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-dark-600 bg-dark-700 text-xs text-gray-200 hover:border-blue-500 hover:text-white transition-colors"
+      >
+        <Ico /><span>{nom}</span>
+      </a>
+    ))}
+  </div>
+  <p class="rd-estat text-xs text-gray-500 italic">Comprovant l'última versió…</p>
+  <p class="rd-fallback hidden text-xs text-gray-500">
+    Descarrega directa no disponible ara mateix — fes servir
+    <a href={repoUrl} target="_blank" class="text-blue-400 hover:text-blue-300">Releases</a>.
+  </p>
+</div>
+
+<script>
+  // Un sol script per a TOTES les targetes (Astro el deduplica).
+  const API = 'https://api.github.com/repos/';
+
+  // Com reconèixer l'asset de cada sistema pel NOM del fitxer.
+  // (Els noms varien: `…-win-x64.zip`, `GEP_…-Windows.zip`, `…-macOS-dmg…`.)
+  const PISTES = {
+    windows: ['windows', 'win-', 'win_', 'win.'],
+    macos: ['macos', 'mac-', 'mac_', 'osx'],
+    linux: ['linux'],
+    android: ['android', '.apk'],   // p. ex. `app_hores-debug-C26.apk` (sense «android» al nom)
+  };
+  const PREFERITS = {
+    windows: ['.exe', '.zip'],
+    macos: ['.dmg', '.zip'],
+    linux: ['.appimage', '.tar.gz', '.deb', '.rpm', '.zip'],
+    android: ['.apk', '.zip'],
+  };
+
+  function triaAsset(os, assets) {
+    const pistes = PISTES[os] || [];
+    const exts = PREFERITS[os] || [];
+    const cand = (assets || []).filter((a) => {
+      const n = (a.name || '').toLowerCase();
+      return pistes.some((p) => n.includes(p)) && exts.some((e) => n.endsWith(e));
+    });
+    if (!cand.length) return null;
+    for (const e of exts) {
+      const f = cand.find((a) => (a.name || '').toLowerCase().endsWith(e));
+      if (f) return f;
+    }
+    return cand[0];
+  }
+
+  const memoria = {};        // evita repetir la petició (límit 60/h de l'API)
+  async function releases(repo) {
+    if (memoria[repo]) return memoria[repo];
+    const r = await fetch(API + repo + '/releases');
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    if (!Array.isArray(d) || !d.length) throw new Error('sense releases');
+    const rel = d.find((x) => !x.draft) || d[0];   // la primera = la més nova
+    memoria[repo] = rel;
+    return rel;
+  }
+
+  const mida = (b) => (b >= 1048576 ? (b / 1048576).toFixed(0) + ' MB'
+    : Math.max(1, Math.round(b / 1024)) + ' KB');
+
+  document.querySelectorAll('.release-downloads[data-repo]').forEach(async (el) => {
+    const repo = el.getAttribute('data-repo');
+    const estat = el.querySelector('.rd-estat');
+    const fallback = el.querySelector('.rd-fallback');
+    const fila = el.querySelector('.rd-botons');
+    try {
+      const rel = await releases(repo);
+      let fets = 0;
+      el.querySelectorAll('.rd-btn').forEach((b) => {
+        const a = triaAsset(b.getAttribute('data-os'), rel.assets);
+        if (!a) { b.remove(); return; }
+        b.setAttribute('href', a.browser_download_url);
+        b.setAttribute('title', a.name + ' (' + mida(a.size) + ')');
+        b.classList.remove('hidden');
+        fets++;
+      });
+      // Repos amb un sol paquet (p. ex. QlistGoStyle): un botó genèric.
+      if (!fets) {
+        const unic = (rel.assets || []).find(
+          (a) => !/sha256|checksums?/i.test(a.name || ''));
+        if (unic) {
+          el.querySelector('.rd-botons').innerHTML =
+            '<a class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-dark-600 bg-dark-700 text-xs text-gray-200 hover:border-blue-500 hover:text-white transition-colors"'
+            + ' href="' + unic.browser_download_url + '" title="' + unic.name + ' (' + mida(unic.size) + ')">'
+            + 'Descarrega ' + rel.tag_name + '</a>';
+          fets = 1;
+        }
+      }
+      if (fets) { fila.classList.remove('hidden'); estat.remove(); }
+      else { estat.remove(); fallback.classList.remove('hidden'); }
+    } catch (e) {
+      estat.remove();
+      fallback.classList.remove('hidden');
+    }
+  });
+</script>
